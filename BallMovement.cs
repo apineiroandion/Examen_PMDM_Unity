@@ -18,17 +18,41 @@ public class BallMovement : MonoBehaviour
         lejos,
         sinDefinir
     }
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Obtiene el Rigidbody
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        float distancia = Vector3.Distance(transform.position, cubo.position);
+
+        if (distancia <= distanciaUmbral)
+        {
+            state = playerState.cerca;
+            Debug.Log("La bola está cerca del cubo.");
+        }
+        else
+        {
+            state = playerState.lejos;
+            Debug.Log("La bola está lejos del cubo.");
+        }
+
+        /**
+        float distancia = Vector3.Distance(transform.position, cubo.position);
+
+        bool estaCerca = distancia <= distanciaUmbral;
+
+        animator.SetBool("estaCerca", estaCerca); // Cambia el parámetro en el Animator
+
+        Debug.Log(estaCerca ? "✅ La bola está cerca del cubo." : "❌ La bola está lejos del cubo.");
+        **/
     }
 
     void FixedUpdate()

@@ -30,3 +30,19 @@ Otras opciones serian, hacerlo al reves, creando el Script en la bola y que mand
 
 Con esto ya tenemos al cubo persiguiendo a la bola.
 
+### Hay dos estados: “lejos” y “cerca”. Según la posición de la bola respecto al cubo, cambia el estado (2 puntos)
+
+### Sin animator!
+
+ 1. Creo un enum PlayerState dento del scrip BallMovement, donde voy a definir los estados "cerca", "lejos" y "sinDefinir"
+ 
+ 2. Creo un atributo del tipo PlayerState llamado "state" que define el estado actual de la bola.
+ 
+ 3. Añado las referencias al objeto etiquetado como cubo y defino la distancia que se considera cerca (2f) 
+
+ 4. Dentro update() defino la varaible distancia que calcula la diferencia de la posicion entre ambos objetos, y creo un if donde si la distancia es menos a la distanciaUmbral cambia el estado a cerca y manda un log avisando de que la bola esta creaca, y si no cambia el estado a lejos y manda un log diciendo que la bola esta lejos.
+
+ 
+
+
+
