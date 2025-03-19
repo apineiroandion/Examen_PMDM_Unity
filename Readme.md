@@ -113,8 +113,59 @@ Con esto ya tenemos al cubo persiguiendo a la bola.
             isRotating = false;
         }
 
+## Docker:
 
+### Realiza una imagen para poder usar, mientras se está desarrollando, una app en python.
+### La app es un servidor Flask que al consultar la ip mostrará un “Hola Flask”
+### Entrega el Repositorio (puede ser el mismo que en el apartado de Unity) con los ficheros necesario y un Readme explicativo (2 punto)
 
+1. Creamos proyecto en Docker con un entrono personalizado
 
+2. instalamos flask, simplemente importarlo y ya el IDE te lo instala automaticamente
+
+3. Creamos una app sencilla donde creamos una funcion que nos devuelva el string que queremos mostrar etiquetada con @app.route('/'), y una funcion main donde aparece el host y el puerto.
+        
+        from flask import Flask
+
+        app = Flask(__name__)
+
+        @app.route('/')
+        def hello_world():
+            return 'Hola flask'
+
+        if __name__ == '__main__':
+            app.run(host='0.0.0.0', port=8000)
+
+4. Creamos el docker file donde especificamos la imagen, el directorio de trabajo del contenedor, indicamos que tiene que isntalar flask (pip install flask) ya que en el contenedor no se instala automaticamente como en la maquina, exponemos el puerto deseado y le mandamos ejecutar el sript.
+
+        # Usa una imagen base de Python
+        FROM python:3.9-slim
+
+        # Establece el directorio de trabajo en el contenedor
+        WORKDIR /app
+
+        # Copia el archivo Main.py al directorio de trabajo
+        COPY Main.py .
+
+        # Instala Flask
+        RUN pip install flask
+
+        # Exponer el puerto 8000
+        EXPOSE 8000
+
+        # Comando para ejecutar el script cuando se levante el contenedor
+        CMD ["python", "Main.py"]
+
+5. Creamos la imagen a traves del siguiente comando (cambiando hello-world-app por el nombre que le queramos dar a la imagen): 
+
+        docker build -t hello-world-app .     
+
+6. Iniciamos un contenedor a partir de al imagen:
+
+        docker run --rm -p 8000:8000 hello-world-app
+
+    El primer puerto es el que exponemos en la maquina local, y el segundo el del contenedor, que no tienen porque ser el mismo.
+
+    --rm es para que el contenedor se elimine automaticamente cuando se haya parado.
 
 
