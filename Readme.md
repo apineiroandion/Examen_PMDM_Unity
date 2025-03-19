@@ -15,3 +15,18 @@ Este es el repsoitorio en el que voy a subir los scripts del examen.
 Otras opciones serian, hacerlo al reves, creando el Script en la bola y que mandara el log al entrar en contacto con un objeto "Cubo", usar un trigger con OnTriggerEnter en lugar de OnCollisionEnter. O utilizar la colision con OnCollisionExit enviando el mensaje cuando el objeto deja de estar en contacto.
 
 ### Que el cubo persiga a la bola como un enemigo (2 puntos)
+
+1. Instalamos AI Navigation desde el Package Manager
+
+2. Creo un nuevo Game Object vacio al que llamo "Enemigo" sobre el cual arrastro el cubo que teniamos creado previamente, de modo que actue como el cuerpo del enemigo.
+
+3. Selecciono el plano de juego, al que habia llamado "Ground" y le incluyo el componente NavMeshSurface
+
+4. Desde la pestaña de Inspect, y dentro del apartado de NavMeshSurface abro el desplegable de CollectObjects y marco CurrentObjectHierarchy y le doy al botón bake.
+
+5. Vuelvo a seleccionar el objeto "Enemigo" y le añado el componente NavMeshAgent.
+
+6. Creo un nuevo script en el enemigo llamado "EnemyMovement", y le copio el codigo del script del tutorial de RollaBall, ya que es perfectamente funcional para este caso.
+
+Con esto ya tenemos al cubo persiguiendo a la bola.
+
