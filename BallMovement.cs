@@ -6,6 +6,16 @@ public class BallMovement : MonoBehaviour
 {
     public float speed = 10f; // Velocidad de movimiento
     private Rigidbody rb;
+
+    public playerState state = playerState.sinDefinir;
+
+    public enum playerState
+    {
+        cerca,
+        lejos,
+        sinDefinir
+    }
+
     // Start is called before the first frame update
     void Start()
     {
