@@ -7,6 +7,9 @@ public class BallMovement : MonoBehaviour
     public float speed = 10f; // Velocidad de movimiento
     private Rigidbody rb;
 
+    public Transform cubo; // Referencia al objeto "Cubo"
+    public float distanciaUmbral = 2f; // Distancia para considerar "cerca"
+
     public playerState state = playerState.sinDefinir;
 
     public enum playerState
